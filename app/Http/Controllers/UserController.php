@@ -72,12 +72,9 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        
-        $user = User::where('id',  '=', $user)->first();
-        $user->biography = $request->input('biography');
-        $user->update();
-        return redirect()->back()->with('status','Biography Updated Successfully');
-
+        $user = User::find($user)->first();
+        $user->biography = $request->biography;
+        $user->save();
     }
 
     /**
