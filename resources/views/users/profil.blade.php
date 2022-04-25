@@ -1,4 +1,10 @@
 <x-guest-layout>
+<x-app-layout>
+<x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Hornithotrynques') }}
+        </h2>
+        </x-slot>
  <p>{{$user->name}}:</p>
   <p>{{$user->biography}}</p>
  <img src="{{ $user->img_url }}">
@@ -16,4 +22,5 @@
 
 
 
+</x-app-layout>
 </x-guest-layout>

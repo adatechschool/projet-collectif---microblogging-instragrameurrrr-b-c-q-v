@@ -2,7 +2,7 @@
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                <img src="hornithotrynque.png" class="block h-30 w-30 fill-current text-gray-600">
             </a>
         </x-slot>
 
