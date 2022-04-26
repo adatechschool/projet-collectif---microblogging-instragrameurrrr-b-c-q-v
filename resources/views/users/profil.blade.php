@@ -24,6 +24,20 @@
                     {{ __('Edit') }}
         </x-button>
 </div>
-</form> 
+</form>
+
+
+<form role="form" action="{{ url('/followers')}}" method='POST'>
+{!! csrf_field() !!}
+<div class="w-full sm:max-w-md my-5 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg" style="margin-bottom:50px;">
+<input type="hidden" name="user_id" value='{{$user->id}}'>
+<h1>Followers : </h1>
+<h1>Following : </h1>
+        <x-button >
+                    {{ __('Follow') }}
+        </x-button>
+</div>
+</form>
+
 </x-app-layout>
 </x-guest-layout>

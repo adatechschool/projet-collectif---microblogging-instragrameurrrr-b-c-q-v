@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Followers;
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Models\Followers;
+use Illuminate\Support\Facades\Auth;
 
 
-class UserController extends Controller
+class FollowerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,7 +27,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -37,57 +38,54 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Followers::create([
+            'followed_user_id' => $request->user_id,
+            'following_user_id' => Auth::user()->id
+        ]);
+        return back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Followers  $followers
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(Followers $followers)
     {
-/*         $followers = Followers::where('following_user_id', '=', $user)->first(); 
- */        return view('users.profil', [
-            'user' => $user,
-        ]);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Followers  $followers
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(Followers $followers)
     {
-        $user = User::where('id',  '=', $user)->first();
-        return view('users.profil', compact('user'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Followers  $followers
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, Followers $followers)
     {
-        $user = User::find($user)->first();
-        $user->biography = $request->biography;
-        $user->save();
-        return view('users.profil', compact('user'));
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Followers  $followers
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Followers $followers)
     {
         //
     }
