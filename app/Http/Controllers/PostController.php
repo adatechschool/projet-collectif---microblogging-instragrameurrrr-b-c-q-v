@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -40,9 +41,8 @@ class PostController extends Controller
 
             'description' => $request->description,
             'img_url' => $request->img_url,
-            'user_id' => $request->user_id
+            'user_id' => Auth::user()->id
         ]);
-
 
         $posts=Post::all();
         return view('posts.index',['posts'=>$posts]);
