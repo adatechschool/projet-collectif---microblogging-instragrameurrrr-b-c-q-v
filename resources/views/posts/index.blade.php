@@ -24,6 +24,6 @@
     @foreach($posts as $post)
     <p>{{$post->user->name}}:</p>
     <p>{{$post->description}}</p>
-    <img src="{{ $post->img_url }}">
+    <img src="{{ $post->img_url }}"style="max-width: 600px;height: auto;margin-left: 30vw;padding: 3%;">
     @endforeach
   </x-app-layout>

@@ -7,7 +7,7 @@
         </x-slot>
 
 <div style="display:flex;justify-content:center;flex-direction:column;align-items:center;text-align:left;" >
-<img src="https://i.imgur.com/foTZhkb.png" style="border-radius:190px; width:auto; height:150px;" ></img>
+<img src="{{ Auth::user()->img}}" style="border-radius:190px; width:auto; height:150px;" ></img>
 <h1>{{$user->name}}</h1>
 <h1>{{$user->biography}}</h1>
 </div>
