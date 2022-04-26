@@ -6,7 +6,7 @@
         </h2>
     </x-slot>
     
-    <form role="form" action="{{ url('/posts') }}" method='POST'>
+    <form role="form" action="{{ url('/posts') }}" method='POST' enctype="multipart/form-data">
  {!! csrf_field() !!}
  <div class="form-group" >
     <x-label for="description">Strike a prost</x-label>
@@ -14,7 +14,7 @@
 </div>
 <div class="form-group" >
     <x-label for="img_url">image</x-label>
-    <x-input class="form-control" name="img_url" placeholder="Img" value="url"/>
+    <x-input type="file" class="form-control" name="img_url" placeholder="Img" value="url"/>
 </div>
   <!-- <input type="hidden" name="user_id" value="1"/> -->
   <x-button >
@@ -24,6 +24,6 @@
     @foreach($posts as $post)
     <p>{{$post->user->name}}:</p>
     <p>{{$post->description}}</p>
-    <img src="{{ $post->img_url }}"style="max-width: 600px;height: auto;margin-left: 30vw;padding: 3%;">
+    <img src="{{ url('public/images/'.$post->img_url) }}"style="max-width: 600px;height: auto;margin-left: 30vw;padding: 3%;">
     @endforeach
   </x-app-layout>

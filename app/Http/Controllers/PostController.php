@@ -8,6 +8,23 @@ use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
+    /* public function addImage(){
+        return view('posts.index');
+    }
+
+    public function storeImage(Request $request){
+        $data = Post::create();
+        if($request->file('img_url')){
+            $file=$request->file('img_url');
+            $filename=date('YmdHi').$file->getClientOriginalName();
+            $file->move(public_path('public/images'), $filename);
+            $data['img_url']=$filename;
+        }
+        $data->save();
+        return redirect()->route('posts.index');
+
+    } */
+
     /**
      * Display a listing of the resource.
      *
@@ -43,7 +60,13 @@ class PostController extends Controller
             'img_url' => $request->img_url,
             'user_id' => Auth::user()->id
         ]);
-
+        if($request->file('img_url')){
+            $file=$request->file('img_url');
+            $filename=date('YmdHi').$file->getClientOriginalName();
+            $file->move(public_path('public/images'), $filename);
+            $post['img_url']=$filename;
+        }
+        $post->save();
         $posts=Post::all();
         return view('posts.index',['posts'=>$posts]);
     }
