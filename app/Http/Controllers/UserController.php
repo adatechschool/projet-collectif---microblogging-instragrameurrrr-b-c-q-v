@@ -75,6 +75,7 @@ class UserController extends Controller
         $user = User::find($user)->first();
         $user->biography = $request->biography;
         $user->save();
+        return view('users.profil', compact('user'));
     }
 
     /**

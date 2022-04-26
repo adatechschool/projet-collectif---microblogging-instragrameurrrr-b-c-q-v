@@ -9,7 +9,7 @@
                         <!-- <x-application-logo class="block h-10 w-auto fill-current text-gray-600" /> -->
                         <!-- <img src="{{storage_path('app/logo_macaron.png')}}"></img> --> 
                       
-                        <img src="hornithotrynque.png" class="block h-20 w-20 fill-current text-gray-600">
+                        <img src="https://i.imgur.com/HZF8h5k.png" class="block h-20 w-20 fill-current text-gray-600">
                     </a>
                 </div>
 
@@ -40,7 +40,7 @@
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <x-dropdown-link :href="route('dashboard')">
+                            <x-dropdown-link :href="url('users', ['user' => Auth::user()->id])">
                                 {{ __('Profil') }}
                             </x-dropdown-link>
                             <x-dropdown-link :href="route('logout')"

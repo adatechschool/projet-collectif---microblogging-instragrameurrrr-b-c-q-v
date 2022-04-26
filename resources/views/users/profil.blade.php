@@ -5,22 +5,25 @@
             {{ __('Hornithotrynques') }}
         </h2>
         </x-slot>
- <p>{{$user->name}}:</p>
-  <p>{{$user->biography}}</p>
+
+<div style="display:flex;justify-content:center;flex-direction:column;align-items:center;text-align:left;" >
+<img src="https://i.imgur.com/foTZhkb.png" style="border-radius:190px; width:auto; height:150px;" ></img>
+<h1>{{$user->name}}</h1>
+<h1>{{$user->biography}}</h1>
+</div>
+
  <img src="{{ $user->img_url }}">
 
  <form role="form" action="{{ url('/users', $user->id) }}" method='POST'>
  {!! csrf_field() !!}
  <input type="hidden" name="_method" value="PUT">
- <div class="form-group" >
-    <label for="biography">Edit your biography</label>
-    <input class="form-control" name="biography" placeholder="Biography" value="Type anything">
+ <div class="w-full sm:max-w-md my-5 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg" style="margin-bottom:50px;">
+        <x-label for="biography" :value="__('Edit your biography')" />
+        <x-input id="biography" rows="5" cols="33" class="block mt-1 w-full" type="text" name="biography" :value="old('biography')"/>
+        <x-button >
+                    {{ __('Edit') }}
+        </x-button>
 </div>
-
-<button type="submit" class="btn btn-default">Submit</button>
-</form>  
-
-
-
+</form> 
 </x-app-layout>
 </x-guest-layout>
