@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Post;
 use Illuminate\Http\Request;
+
 use App\Models\Followers;
 use Illuminate\Support\Facades\Auth;
+
 
 
 
@@ -19,6 +22,9 @@ class UserController extends Controller
     public function index()
     {
         //
+       
+        $user = User::where("user_id", $userid)->with('posts')->first();
+        return view('users.profil', compact("user"));
     }
 
     /**
@@ -82,10 +88,14 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+       
+
         $user = User::find($user)->first();
         $user->biography = $request->biography;
         $user->save();
+
         return back();
+
     }
 
     /**
