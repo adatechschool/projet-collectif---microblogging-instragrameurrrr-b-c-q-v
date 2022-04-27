@@ -36,8 +36,6 @@
 
 </form>
 
-
-
         @if (!$following)
 <form role="form" action="{{ url('/followers')}}" method='POST'>
 {!! csrf_field() !!}
