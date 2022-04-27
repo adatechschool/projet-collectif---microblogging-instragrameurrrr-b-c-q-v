@@ -48,9 +48,12 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-/*         $followers = Followers::where('following_user_id', '=', $user)->first(); 
- */        return view('users.profil', [
+        $followers_count = Followers::where('followed_user_id', '=', $user->id)->count();
+        $following_count = Followers::where('following_user_id', '=', $user->id)->count();
+         return view('users.profil', [
             'user' => $user,
+            'followers_count' => $followers_count,
+            'following_count' => $following_count
         ]);
     }
 

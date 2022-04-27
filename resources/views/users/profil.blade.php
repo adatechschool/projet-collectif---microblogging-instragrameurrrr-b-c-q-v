@@ -31,8 +31,8 @@
 {!! csrf_field() !!}
 <div class="w-full sm:max-w-md my-5 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg" style="margin-bottom:50px;">
 <input type="hidden" name="user_id" value='{{$user->id}}'>
-<h1>Followers : </h1>
-<h1>Following : </h1>
+<h1>Followers : {{$followers_count}} </h1>
+<h1>Following : {{$following_count}}</h1>
         <x-button >
                     {{ __('Follow') }}
         </x-button>

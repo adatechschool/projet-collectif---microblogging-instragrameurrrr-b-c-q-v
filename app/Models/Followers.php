@@ -19,4 +19,12 @@ protected $fillable = [
     'followed_user_id',
     'following_user_id',
 ];
+
+public function users()
+{
+    return $this->hasMany(User::class);
 }
+
+}
+
+
