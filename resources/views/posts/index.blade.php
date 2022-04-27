@@ -5,22 +5,27 @@
             {{ __('Happy hour') }}
         </h2>
     </x-slot>
-    
+ 
+    <div class="w-full sm:max-w-md my-5 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg" style="margin:50px;">
     <form role="form" action="{{ url('/posts') }}" method='POST' enctype="multipart/form-data">
  {!! csrf_field() !!}
- <div class="form-group" >
+ <div class="form-group" style="margin:10px;" >
     <x-label for="description">Strike a prost</x-label>
     <x-input class="form-control" name="description" placeholder="Blabla" value="Type anything"/>
 </div>
-<div class="form-group" >
-    <x-label for="img_url">image</x-label>
+<div class="form-group" style="margin:10px;">
+    <x-label for="img_url">Upload an image</x-label>
     <x-input type="file" class="form-control" name="img_url" placeholder="Img" value="url"/>
 </div>
   <!-- <input type="hidden" name="user_id" value="1"/> -->
+  <div style="display: block; float: right;">
   <x-button >
                     {{ __('Prost') }}
   </x-button>
+</div>
 </form> 
+</div>
+
     @foreach($posts as $post)
     <div style="display:flex; flex-direction: column; align-items:center; justify-content: center;">
     <div style="border: 5px solid black; margin:10px; min-width: 700px; padding: 20px;">
