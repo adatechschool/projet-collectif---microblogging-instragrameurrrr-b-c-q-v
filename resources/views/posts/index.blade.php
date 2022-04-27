@@ -28,14 +28,17 @@
     <img src="{{ $post->user->img}}" style="border-radius:190px; width:auto; height:60px;" ></img> 
     <h1 style="font-size: 5vh; margin-left: 10px;">{{$post->user->name}}</h1>
 </div>
+
    <img src="{{ url('public/images/'.$post->img_url) }}" alt="post images" style="max-width: 600px;height: auto;padding: 3%; margin: auto;">
    <h3 style="font-size: 3vh;">{{$post->description}}</h3> 
    <form role="form" action="{{ url('/likes') }}" method='POST'>
    {!! csrf_field() !!}
    <input type="hidden" name="like" value='{{$post->id}}'>
    <x-button  >
-                    {{ __('Like') }}
+                    {{ __('Cheers to that !') }}
   </x-button>
+  <p> 🍻  x {{$post->likes->count()}}</p>
+
 </form>
 </div>
 </div>

@@ -33,7 +33,8 @@ class PostController extends Controller
     public function index()
     {
         $posts=Post::latest()->get();
-        return view('posts.index',['posts'=>$posts]);
+        return view('posts.index',[
+            'posts'=>$posts]);
     }
 
     /**
@@ -82,8 +83,6 @@ class PostController extends Controller
         return view('posts.show', [
             'post' => $post
         ]);
-
-      
     }
 
     /**

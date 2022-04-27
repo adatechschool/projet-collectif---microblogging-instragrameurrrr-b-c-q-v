@@ -21,8 +21,6 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
-       
         $user = User::where("user_id", $userid)->with('posts')->first();
         return view('users.profil', compact("user"));
     }
