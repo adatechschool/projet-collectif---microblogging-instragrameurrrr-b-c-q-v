@@ -81,12 +81,13 @@ class FollowerController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
+     * 
      * @param  \App\Models\Followers  $followers
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Followers $followers)
+    public function destroy($followers)
     {
-        //
+       $fol = Followers::where([['followed_user_id', '=', $followers],['following_user_id', '=', Auth::user()->id]])->delete();
+       return back();
     }
 }

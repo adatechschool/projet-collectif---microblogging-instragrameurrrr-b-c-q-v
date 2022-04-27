@@ -10,11 +10,13 @@
 <img src="{{ Auth::user()->img}}" style="border-radius:190px; width:auto; height:150px;" ></img>
 <h1>{{$user->name}}</h1>
 <h1>{{$user->biography}}</h1>
+<h1>Followers : {{$followers_count}} </h1>
+<h1>Following : {{$following_count}}</h1>
 </div>
 
  <img src="{{ $user->img_url }}">
 
- <form role="form" action="{{ url('/users', $user->id) }}" method='POST'>
+ <form role="form" action="{{ url('/users', [$user->id]) }}" method='POST'>
  {!! csrf_field() !!}
  <input type="hidden" name="_method" value="PUT">
  <div class="w-full sm:max-w-md my-5 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg" style="margin-bottom:50px;">
@@ -27,17 +29,29 @@
 </form>
 
 
+
+        @if (!$following)
 <form role="form" action="{{ url('/followers')}}" method='POST'>
 {!! csrf_field() !!}
 <div class="w-full sm:max-w-md my-5 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg" style="margin-bottom:50px;">
 <input type="hidden" name="user_id" value='{{$user->id}}'>
-<h1>Followers : {{$followers_count}} </h1>
-<h1>Following : {{$following_count}}</h1>
         <x-button >
                     {{ __('Follow') }}
         </x-button>
-</div>
+        </div>
 </form>
+        @else
+        <form role="form" action="/followers/{{$user->id}}" method='POST'>
+        {{ csrf_field() }}
+        {{ method_field('DELETE') }}
+        <div class="w-full sm:max-w-md my-5 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg" style="margin-bottom:50px;">
+       <x-button >
+                    {{ __('Unfollow') }}
+        </x-button>
+        </div>
+</form>
+        @endif
+
 
 </x-app-layout>
 </x-guest-layout>
