@@ -7,7 +7,8 @@
         </x-slot>
 
 <div style="display:flex;justify-content:center;flex-direction:column;align-items:center;text-align:left;" >
-<img src="{{ Auth::user()->img}}" style="border-radius:190px; width:auto; height:150px;" ></img>
+ <img src="{{ Auth::user()->img}}" style="border-radius:190px; width:auto; height:150px;" ></img> 
+
 <h1>{{$user->name}}</h1>
 <h1>{{$user->biography}}</h1>
 </div>
@@ -20,6 +21,10 @@
  <div class="w-full sm:max-w-md my-5 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg" style="margin-bottom:50px;">
         <x-label for="biography" :value="__('Edit your biography')" />
         <x-input id="biography" rows="5" cols="33" class="block mt-1 w-full" type="text" name="biography" :value="old('biography')"/>
+        <div class="form-group" >
+    <x-label for="img">image</x-label>
+    <x-input type="file" class="form-control" name="img" placeholder="Img" value="url"/>
+</div>
         <x-button >
                     {{ __('Edit') }}
         </x-button>

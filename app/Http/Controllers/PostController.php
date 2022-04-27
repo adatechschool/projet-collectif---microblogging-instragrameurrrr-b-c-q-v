@@ -67,7 +67,7 @@ class PostController extends Controller
             $post['img_url']=$filename;
         }
         $post->save();
-        $posts=Post::all();
+        $posts=Post::latest()->get();
         return view('posts.index',['posts'=>$posts]);
     }
 
