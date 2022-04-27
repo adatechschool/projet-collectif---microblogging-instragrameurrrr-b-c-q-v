@@ -29,3 +29,9 @@ Route::get("/profil", function () {
 
 require __DIR__.'/auth.php';
 
+Route::middleware('auth')->group(function () {
+    Route::post('like', 'LikeController@like')->name('like');
+    Route::delete('like', 'LikeController@unlike')->name('unlike');
+});
+
+

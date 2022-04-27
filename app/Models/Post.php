@@ -2,22 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Contracts\Likeable;
+use App\Models\Concerns\Likes;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Post extends Model implements Likeable
 {
-    use HasFactory;
-
-    public function user()
-{
-    return $this->belongsTo(User::class);
+    use Likes;
 }
 
-protected $fillable = [
-    'description',
-    'img_url',
-    'user_id',
-];
 
-}

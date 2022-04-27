@@ -27,3 +27,4 @@
     <img src="{{ $post->img_url }}"style="max-width: 600px;height: auto;margin-left: 30vw;padding: 3%;">
     @endforeach
   </x-app-layout>
+  @include ('like', ['model'=$post])
