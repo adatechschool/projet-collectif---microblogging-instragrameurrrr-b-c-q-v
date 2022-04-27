@@ -22,10 +22,16 @@
   </x-button>
 </form> 
     @foreach($posts as $post)
-    <p>{{$post->user->name}}:</p>
-    <p>{{$post->description}}</p>
-   
-   <img src="{{ url('public/images/'.$post->img_url) }}" alt="post images" style="max-width: 600px;height: auto;margin-left: 30vw;padding: 3%;"> 
+    <div style="display:flex; flex-direction: column; align-items:center; justify-content: center;">
+    <div style="border: 5px solid black; margin:10px; min-width: 700px; padding: 20px;">
+    <div style="display: flex; align-items:center;">
+    <img src="{{ $post->user->img}}" style="border-radius:190px; width:auto; height:60px;" ></img> 
+    <h1 style="font-size: 5vh; margin-left: 10px;">{{$post->user->name}}</h1>
+</div>
+   <img src="{{ url('public/images/'.$post->img_url) }}" alt="post images" style="max-width: 600px;height: auto;padding: 3%; margin: auto;">
+   <h3 style="font-size: 3vh;">{{$post->description}}</h3> 
+</div>
+</div>
  <!-- 
    <img src="{{ $post->img_url }}" alt="post images" style="max-width: 600px;height: auto;margin-left: 30vw;padding: 3%;"> 
     -->
