@@ -64,6 +64,15 @@
     <p>{{$post->description}}</p>
     <img src="{{ url('public/images/'.$post->img_url) }}" alt="post images" style="max-width: 600px;height: auto;margin-left: 30vw;padding: 3%;"> 
    <!--  <img src="{{ $post->img_url }}" alt="post images" style="max-width: 600px;height: auto;margin-left: 30vw;padding: 3%;">  -->
+   <form role="form" action="{{ url('/likes') }}" method='POST'>
+   {!! csrf_field() !!}
+   <input type="hidden" name="like" value='{{$post->id}}'>
+   <x-button  >
+                    {{ __('Cheers to that !') }}
+  </x-button>
+  <p> 🍻  x {{$post->likes->count()}}</p>
+
+</form>
 @endforeach
 
 
