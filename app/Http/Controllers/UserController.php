@@ -5,7 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Post;
 use Illuminate\Http\Request;
+
+use App\Models\Followers;
 use Illuminate\Support\Facades\Auth;
+
+
+
 
 class UserController extends Controller
 {
@@ -51,8 +56,14 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('users.profil', [
-            'user' => $user
+        $followers_count = Followers::where('followed_user_id', '=', $user->id)->count();
+        $following_count = Followers::where('following_user_id', '=', $user->id)->count();
+        $following = Followers::where([['followed_user_id', '=', $user->id], ['following_user_id', '=', Auth::user()->id]])->first();
+         return view('users.profil', [
+            'user' => $user,
+            'followers_count' => $followers_count,
+            'following_count' => $following_count, 
+            'following' => $following
         ]);
     }
 
@@ -83,7 +94,8 @@ class UserController extends Controller
         $user->biography = $request->biography;
         $user->save();
 
-        return view('users.profil', compact('user'));
+        return back();
+
     }
 
     /**
