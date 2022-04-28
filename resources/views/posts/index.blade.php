@@ -31,7 +31,7 @@
     <div style="border: 5px solid black; margin:10px; width: 700px; height:auto; padding: 20px;">
     <div style="display: flex; align-items:center;">
     <img src="{{ $post->user->img}}" style="border-radius:190px; width:auto; height:60px;" ></img> 
-    <h1 style="font-size: 5vh; margin-left: 10px;">{{$post->user->name}}</h1>
+    <a href="users/{{$post->user->id}}"> <h1 style="font-size: 5vh; margin-left: 10px;">{{$post->user->name}}</h1></a>
 </div>
 
    <img src="{{ url('public/images/'.$post->img_url) }}" alt="post images" style="max-width: 600px;height: auto;padding: 3%; margin: auto;">
