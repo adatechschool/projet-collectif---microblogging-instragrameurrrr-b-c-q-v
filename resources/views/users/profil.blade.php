@@ -43,6 +43,7 @@
     </div>
 </div>
 
+@if ($user->id == Auth::user()->id)
  <div class="w-full sm:max-w-md my-5 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg" style="margin:50px;">
     <form role="form" action="{{ url('/users', [$user->id]) }}" method='POST'>
     {!! csrf_field() !!}
@@ -60,7 +61,9 @@
                     {{ __('Edit') }}
             </x-button>
         </div>
+</form>
 </div>
+@endif
 
 
 @foreach ($user->posts as $post) 
@@ -78,8 +81,6 @@
 
 </form>
 @endforeach
-
-</form>
 </div>
 </div>
 
