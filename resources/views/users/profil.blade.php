@@ -18,6 +18,15 @@
 
 <!--  <img src="{{ $user->img_url }}"> -->
 
+        @if (!$following)
+<form role="form" action="{{ url('/followers')}}" method='POST'>
+{!! csrf_field() !!}
+<div class="w-full sm:max-w-md my-5 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg" style="margin-bottom:50px;">
+<input type="hidden" name="user_id" value='{{$user->id}}'>
+        <x-button >
+                    {{ __('Follow') }}
+        </x-button>
+
     <div>
     @if (!$following)
     <form role="form" action="{{ url('/followers')}}" method='POST'>
@@ -27,6 +36,7 @@
                 <x-button >
                             {{ __('Follow') }}
                 </x-button>
+
         </div>
     </form>
     @else
@@ -62,9 +72,27 @@
         </div>
 </div>
 
+
+@foreach ($user->posts as $post) 
+    <p>{{$post->user->name}}:</p>
+    <p>{{$post->description}}</p>
+    <img src="{{ url('public/images/'.$post->img_url) }}" alt="post images" style="max-width: 600px;height: auto;margin-left: 30vw;padding: 3%;"> 
+   <!--  <img src="{{ $post->img_url }}" alt="post images" style="max-width: 600px;height: auto;margin-left: 30vw;padding: 3%;">  -->
+   <form role="form" action="{{ url('/likes') }}" method='POST'>
+   {!! csrf_field() !!}
+   <input type="hidden" name="like" value='{{$post->id}}'>
+   <x-button  >
+                    {{ __('Cheers to that !') }}
+  </x-button>
+  <p> 🍻  x {{$post->likes->count()}}</p>
+
+</form>
+@endforeach
+
 </form>
 </div>
 </div>
+
 
 
 <div style="background-color: #F3F4F6; margin-top: -150px;">

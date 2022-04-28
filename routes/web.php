@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FollowerController;
+use App\Http\Controllers\LikesController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +23,8 @@ Route::resource('posts', PostController::class);
 Route::resource('users', UserController::class);
 
 Route::resource('followers', FollowerController::class);
+
+Route::resource('likes', LikesController::class);
 
 Route::get('/', function () {
     return view('auth/login');
