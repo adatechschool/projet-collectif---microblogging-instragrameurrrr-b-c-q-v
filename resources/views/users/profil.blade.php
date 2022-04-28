@@ -41,7 +41,7 @@
         </form>
     @endif
                 </div>
-</div>
+
 
 @if ($user->id == Auth::user()->id)
  <div class="w-full sm:max-w-md my-5 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg" style="margin:50px;">
@@ -65,7 +65,7 @@
 </div>
 @endif
 
-<div style="background-color: #F3F4F6; margin-top: -150px;">
+<div style="background-color: #F3F4F6; margin-top: -5vh;">
 @foreach($user->posts as $post)
     <div style="display:flex; flex-direction: column; align-items:center; justify-content: center;">
         <div style="border: 5px solid black; margin:10px; min-width: 700px; padding: 20px;">
@@ -74,19 +74,31 @@
                 <h1 style="font-size: 5vh; margin-left: 10px;">{{$post->user->name}}</h1> 
             </div>
             <img src="{{ url('public/images/'.$post->img_url) }}" alt="post images" style="max-width: 600px;height: auto;padding: 3%; margin: auto;">
-            <h3 style="font-size: 3vh;">{{$post->description}}</h3> 
-        </div>
+            <h3 style="font-size: 3vh;">{{$post->description}}</h3>
+<div style="display:flex; ;justify-content:flex-end;"> 
         <form role="form" action="{{ url('/likes') }}" method='POST'>
         {!! csrf_field() !!}
          <input type="hidden" name="like" value='{{$post->id}}'>
-        <x-button  >
+         <div style="margin-right:20px;">
+         <x-button  >
                     {{ __('Cheers to that !') }}
         </x-button>
         <p> 🍻  x {{$post->likes->count()}}</p>
-        </div>
+</div>
         </form>
+        <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
+    @csrf
+    <input type="hidden" name="_method" value="DELETE"> 
+  <x-button >
+                    {{ __('Adios') }}
+  </x-button>
+
+</form>
+</div>
+</div>
+        </div>
     @endforeach
 </div>
-</div>
 
+</div>
 </x-app-layout>
