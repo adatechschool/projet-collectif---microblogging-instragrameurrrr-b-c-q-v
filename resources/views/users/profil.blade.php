@@ -8,7 +8,7 @@
 <div style="display: flex; justify-content: center; margin-top: 30px;">
         <div style="display:flex;justify-content:center;flex-direction:column;align-items:center;text-align:left;" >
                 <div>
-        <img src="{{ Auth::user()->img}}" style="border-radius:190px; width:auto; height:150px;" ></img>  
+        <img src="{{ Auth::user()->img}}" style="border-radius:190px; width:auto; height:150px; margin:auto;" ></img>  
         <!-- <img src="{{$user->img}}" style="border-radius:190px; width:auto; height:150px;"/>  -->
         <h1>{{$user->name}}</h1>
         <h1>{{$user->biography}}</h1>
