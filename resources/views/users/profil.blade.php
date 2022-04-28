@@ -6,41 +6,41 @@
         </h2>
         </x-slot>
 <div style="display: flex; justify-content: center; margin-top: 30px;">
-<div style="display:flex;justify-content:center;flex-direction:column;align-items:center;text-align:left;" >
-    <div>
+        <div style="display:flex;justify-content:center;flex-direction:column;align-items:center;text-align:left;" >
+                <div>
         <img src="{{ Auth::user()->img}}" style="border-radius:190px; width:auto; height:150px;" ></img>  
         <!-- <img src="{{$user->img}}" style="border-radius:190px; width:auto; height:150px;"/>  -->
         <h1>{{$user->name}}</h1>
         <h1>{{$user->biography}}</h1>
         <h1>Followers : {{$followers_count}} </h1>
         <h1>Following : {{$following_count}}</h1>
-    </div>
+                </div>
 
 
-    <div>
+                <div>
     @if (!$following)
     <form role="form" action="{{ url('/followers')}}" method='POST'>
     {!! csrf_field() !!}
-        <div class="w-full sm:max-w-md my-5 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg" style="margin-bottom:50px;">
+                <div class="w-full sm:max-w-md my-5 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg" style="margin-bottom:50px;">
         <input type="hidden" name="user_id" value='{{$user->id}}'>
                 <x-button >
                             {{ __('Follow') }}
                 </x-button>
 
-        </div>
+                 </div>
     </form>
     @else
         <form role="form" action="/followers/{{$user->id}}" method='POST'>
         {{ csrf_field() }}
         {{ method_field('DELETE') }}
-        <div class="w-full sm:max-w-md my-5 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg" style="margin-bottom:50px;">
+                <div class="w-full sm:max-w-md my-5 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg" style="margin-bottom:50px;">
             <x-button >
                     {{ __('Unfollow') }}
             </x-button>
-        </div>
+                </div>
         </form>
     @endif
-    </div>
+                </div>
 </div>
 
 @if ($user->id == Auth::user()->id)
@@ -65,26 +65,6 @@
 </div>
 @endif
 
-
-@foreach ($user->posts as $post) 
-    <p>{{$post->user->name}}:</p>
-    <p>{{$post->description}}</p>
-    <img src="{{ url('public/images/'.$post->img_url) }}" alt="post images" style="max-width: 600px;height: auto;margin-left: 30vw;padding: 3%;"> 
-   <!--  <img src="{{ $post->img_url }}" alt="post images" style="max-width: 600px;height: auto;margin-left: 30vw;padding: 3%;">  -->
-   <form role="form" action="{{ url('/likes') }}" method='POST'>
-   {!! csrf_field() !!}
-   <input type="hidden" name="like" value='{{$post->id}}'>
-   <x-button  >
-                    {{ __('Cheers to that !') }}
-  </x-button>
-  <p> 🍻  x {{$post->likes->count()}}</p>
-
-</form>
-@endforeach
-</div>
-</div>
-
-
 <div style="background-color: #F3F4F6; margin-top: -150px;">
 @foreach($user->posts as $post)
     <div style="display:flex; flex-direction: column; align-items:center; justify-content: center;">
@@ -96,8 +76,17 @@
             <img src="{{ url('public/images/'.$post->img_url) }}" alt="post images" style="max-width: 600px;height: auto;padding: 3%; margin: auto;">
             <h3 style="font-size: 3vh;">{{$post->description}}</h3> 
         </div>
-    </div>
+        <form role="form" action="{{ url('/likes') }}" method='POST'>
+        {!! csrf_field() !!}
+         <input type="hidden" name="like" value='{{$post->id}}'>
+        <x-button  >
+                    {{ __('Cheers to that !') }}
+        </x-button>
+        <p> 🍻  x {{$post->likes->count()}}</p>
+        </div>
+        </form>
     @endforeach
+</div>
 </div>
 
 </x-app-layout>
