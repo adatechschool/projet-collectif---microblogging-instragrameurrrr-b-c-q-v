@@ -16,16 +16,6 @@
         <h1>Following : {{$following_count}}</h1>
     </div>
 
-<!--  <img src="{{ $user->img_url }}"> -->
-
-        @if (!$following)
-<form role="form" action="{{ url('/followers')}}" method='POST'>
-{!! csrf_field() !!}
-<div class="w-full sm:max-w-md my-5 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg" style="margin-bottom:50px;">
-<input type="hidden" name="user_id" value='{{$user->id}}'>
-        <x-button >
-                    {{ __('Follow') }}
-        </x-button>
 
     <div>
     @if (!$following)
@@ -107,9 +97,6 @@
             <h3 style="font-size: 3vh;">{{$post->description}}</h3> 
         </div>
     </div>
- <!-- 
-   <img src="{{ $post->img_url }}" alt="post images" style="max-width: 600px;height: auto;margin-left: 30vw;padding: 3%;"> 
-    -->
     @endforeach
 </div>
 

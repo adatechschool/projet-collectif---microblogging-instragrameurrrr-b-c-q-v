@@ -37,15 +37,18 @@
    <img src="{{ url('public/images/'.$post->img_url) }}" alt="post images" style="max-width: 600px;height: auto;padding: 3%; margin: auto;">
 
    <h3 style="font-size: 3vh;">{{$post->description}}</h3> 
-
+<div style="display:flex;justify-content:flex-end;">
    <form role="form" action="{{ url('/likes') }}" method='POST'>
    {!! csrf_field() !!}
    <input type="hidden" name="like" value='{{$post->id}}'>
+   <div style="margin-right:20px;">
    <x-button  >
                     {{ __('Cheers to that !') }}
   </x-button>
-  <p> 🍻  x {{$post->likes->count()}}</p>
 
+  <p> 🍻  x {{$post->likes->count()}}</p>
+  </div>
+</form>
 
    <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
     @csrf
@@ -57,9 +60,8 @@
 </form>
 </div>
 </div>
- <!-- 
-   <img src="{{ $post->img_url }}" alt="post images" style="max-width: 600px;height: auto;margin-left: 30vw;padding: 3%;"> 
-    -->
+</div>
+ 
     @endforeach
 
 
